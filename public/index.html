@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mini Message Board</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="app-container">
+    <header class="app-header">
+      <div class="badge">Full-Stack Demo</div>
+      <h1>Mini Message Board</h1>
+      <p class="subtitle">Post a message and watch the full-stack request-response cycle in action.</p>
+    </header>
+
+    <!-- Post Message Card -->
+    <main class="card composer-card">
+      <h2>Leave a Message</h2>
+      
+      <!-- Error Notification Banner (hidden by default) -->
+      <div id="error-banner" class="error-banner hidden" role="alert"></div>
+
+      <form id="message-form" class="message-form">
+        <textarea 
+          id="message-input" 
+          placeholder="What's on your mind? Type a message here..." 
+          rows="3"
+          maxlength="280"
+          required
+        ></textarea>
+        
+        <div class="composer-footer">
+          <span class="char-hint">Max 280 characters</span>
+          <button type="submit" id="post-button" class="btn btn-primary">
+            Post Message
+          </button>
+        </div>
+      </form>
+    </main>
+
+    <!-- Messages Feed -->
+    <section class="card feed-card">
+      <div class="feed-header">
+        <h2>Live Feed</h2>
+        <span id="message-count" class="count-badge">Loading...</span>
+      </div>
+      <div id="messages-container" class="messages-container">
+        <!-- Messages will be injected here by frontend JavaScript in Stage 8 -->
+        <div class="empty-state">Loading messages from server...</div>
+      </div>
+    </section>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>

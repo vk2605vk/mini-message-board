@@ -1,0 +1,6 @@
+# Dependencies (downloaded via npm, can be restored anytime with 'npm install')
+node_modules/
+
+# OS and Editor temporary files
+.DS_Store
+Thumbs.db
