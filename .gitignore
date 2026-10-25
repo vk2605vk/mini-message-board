@@ -8,3 +8,7 @@ Thumbs.db
 # SQLite Database files
 *.db
 
+# Secret Environment Variables (NEVER commit to Git!)
+.env
+
+
