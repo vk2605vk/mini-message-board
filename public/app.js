@@ -28,8 +28,15 @@ function clearError() {
 
 // Format timestamp into human-readable time (e.g. "3:45 PM")
 function formatTime(timestamp) {
-  const date = new Date(timestamp);
-  return date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+  if (!timestamp) return 'Just now';
+  // SQLite CURRENT_TIMESTAMP is in UTC "YYYY-MM-DD HH:MM:SS"
+  const dateStr = typeof timestamp === 'string' && !timestamp.includes('T') && !timestamp.endsWith('Z')
+    ? timestamp.replace(' ', 'T') + 'Z'
+    : timestamp;
+  const date = new Date(dateStr);
+  return isNaN(date.getTime()) 
+    ? 'Just now' 
+    : date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
 }
 
 // ==========================================================================
@@ -64,9 +71,7 @@ async function loadMessages() {
       const messageCard = document.createElement('div');
       messageCard.className = 'message-item';
       
-      const timeString = msg.id && typeof msg.id === 'number' 
-        ? formatTime(msg.id) 
-        : 'Just now';
+      const timeString = formatTime(msg.created_at || msg.id);
 
       messageCard.innerHTML = `
         <p>${escapeHTML(msg.text)}</p>
